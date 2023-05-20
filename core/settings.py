@@ -1,10 +1,10 @@
 from pathlib import Path
 import os
-import environ 
+import environ
+
 
 # Crear una instancia de la clase Env para acceder a las variables de entorno
 env = environ.Env()
-
 # Leer y cargar las variables de entorno desde un archivo .env
 environ.Env.read_env()
 
@@ -26,7 +26,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,21 +37,22 @@ INSTALLED_APPS = [
 PROJECTS_APPS = [
 
 ]
-THIRD_PARTY_APPS =[
+THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
 ]
 
-INSTALLED_APPS= DJANGO_APPS + THIRD_PARTY_APPS + PROJECTS_APPS 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECTS_APPS
 
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
             ['RemoveFormat', 'Source']
         ]
@@ -60,7 +61,7 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = "/media/"
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',    
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -151,24 +152,23 @@ STATICFILES_DIRS = ['build/static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSIONS_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ],
 }
 
-CORS_ORIGIN_WHITLIST = env.list('CORS_ORIGIN_WHITLIST_DEV')
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEV')
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV')
 
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+
 if not DEBUG:
-    ALLOWED_HOSTS =env.lis('ALLOWED_HOSTS_DEPLOY')
-    CORS_ORIGIN_WHITLIST = env.list('CORS_ORIGIN_WHITLIST_DEPLOY')
+    ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEPLOY')
+    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
     CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-
-    DATABASES ={
-        "default":env.db("DATABASE_URL"),
+    DATABASES = {
+        "default": env.db("DATABASE_URL"),
     }
-    DATABASES["default"] ["ATOMIC_REQUEST"] = True
-
+    DATABASES["default"]["ATOMIC_REQUESTS"] = True
