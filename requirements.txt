@@ -1,0 +1,20 @@
+# django-environ (versión 0.10.0): Gestión de configuración de la aplicación
+django-environ == 0.10.0
+
+# django-cors-headers (versión 4.0.0): Comunicación entre backend y frontend
+django-cors-headers == 4.0.0
+
+# django-rest-framework (versión 0.1.0): Creación de APIs en Django
+django-rest-framework == 0.1.0
+
+# Pillow (versión 9.5.0): Manipulación de imágenes en Python
+Pillow == 9.5.0
+
+# django-storages (versión 1.13.2): Almacenamiento de archivos en servicios de almacenamiento en la nube
+django-storages == 1.13.2
+
+# django-ckeditor (versión 6.5.1): Integración de CKEditor para formularios de Django con contenido enriquecido
+django-ckeditor == 6.5.1
+
+# Conexión a bases de datos PostgreSQL
+psycopg2 == 2.9.6
